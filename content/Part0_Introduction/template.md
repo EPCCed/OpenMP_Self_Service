@@ -1,4 +1,4 @@
-# Shared Memory Programming with OpenMP  
+# Introduction to Course XYZ
 
 This course aims to inform users of...
 
