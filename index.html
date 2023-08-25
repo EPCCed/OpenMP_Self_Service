@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shared Memory Programming with OpenMP &mdash; ARCHER2 Online Courses  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" href="_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx_lesson.css" type="text/css" />
+      <link rel="stylesheet" href="_static/sphinx_rtd_theme_ext_color_contrast.css" type="text/css" />
+      <link rel="stylesheet" href="_static/tabs.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/epcc_logo.svg"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/minipres.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex/" />
+    <link rel="search" title="Search" href="search/" />
+    <link rel="next" title="Fundamental Concepts" href="Part1_FundamentalConcepts/contents/" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="#" class="icon icon-home">
+            ARCHER2 Online Courses
+              <img src="_static/epcc_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search/" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="Part1_FundamentalConcepts/contents/">Fundamental Concepts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part2_OpenMPFundamentals/contents/">OpenMP Fundamentals</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part3_ParallelRegions/contents/">Parallel Regions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part4_Worksharing/contents/">Worksharing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part5_Synchronisation/contents/">Synchronisation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part6_FurtherTopics/contents/">Further Topics</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part7_Tasks/contents/">Tasks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part8_OpenMP4.0-4.5/contents/">OpenMP 4.0 and later feattures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part9_TipsTricksGotchas/contents/">Tips, Tricks and Gotchas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part10_MemoryModel/contents/">Memory Model</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Part12_OpenMPImplementation/contents/">OpenMP Implementation</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Exercises/contents/">Exercise materials for ARCHER2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Exercises/contents/#exercise-materials-for-cirrus">Exercise materials for Cirrus</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">ARCHER2 Online Courses</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Shared Memory Programming with OpenMP</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/JPRichings/content/blob/main/content/index.md" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section class="tex2jax_ignore mathjax_ignore" id="shared-memory-programming-with-openmp">
+<h1>Shared Memory Programming with OpenMP<a class="headerlink" href="#shared-memory-programming-with-openmp" title="Permalink to this heading"></a></h1>
+<section id="about-this-course">
+<h2>About this course<a class="headerlink" href="#about-this-course" title="Permalink to this heading"></a></h2>
+<p>Almost all modern computers now have a shared-memory architecture with multiple CPUs connected to the same physical memory, for example multicore laptops or large multi-processor compute servers. This course covers OpenMP, the industry standard for shared-memory programming, which enables serial programs to be parallelised easily using compiler directives. Users of desktop machines can use OpenMP on its own to improve program performance by running on multiple cores; users of parallel supercomputers can use OpenMP in conjunction with MPI to better exploit the shared-memory capabilities of the compute nodes. This course contains an introduction to the fundamental concepts of the shared variables model, followed by the syntax and semantics of OpenMP and how it can be used to parallelise real programs.</p>
+<p>The course covers the following topics:</p>
+<ul class="simple">
+<li><p>Basic concepts of shared memory: threads, tasks, shared/private data, synchronisation.</p></li>
+<li><p>Concepts of OpenMP: parallel regions, shared/private variables, parallel loops, reductions</p></li>
+<li><p>OpenMP parallel regions and associated clauses</p></li>
+<li><p>OpenMP worksharing directives, scheduling of parallel loops</p></li>
+<li><p>OpenMP synchronisation: barriers, critical sections, atomics, locks.</p></li>
+<li><p>OpenMP tasks</p></li>
+<li><p>Additional features of OpenMP: nesting, orphaning, threadprivate globals, OpenMP 4.0/4.5 feature</p></li>
+<li><p>OpenMP tricks, tips and gotchas.</p></li>
+<li><p>OpenMP implementations</p></li>
+<li><p>Memory models.</p></li>
+</ul>
+<p>This self-service course includes a series of Lecture videos (with downloadable slides) which you can work through at your own pace and in your own time.</p>
+<p>Hands-on practical programming exercises are included, with the option of working in either Fortran or C.</p>
+<p>Access to ARCHER2 or Cirrus is provided for participants to build and run the exercises.</p>
+</section>
+<section id="who-is-the-course-for">
+<h2>Who is the course for?<a class="headerlink" href="#who-is-the-course-for" title="Permalink to this heading"></a></h2>
+<p>This course is for application programmers who want to learn shared memory programming using OpenMP. We recommend that you are confident in the basics of C, C++ or Fortran before taking this course.</p>
+</section>
+<section id="pre-course-questionnaire">
+<h2>Pre-course questionnaire<a class="headerlink" href="#pre-course-questionnaire" title="Permalink to this heading"></a></h2>
+<p>Before you begin this self-service course, we would be most grateful if you could complete this <a class="reference external" href="https://forms.office.com/r/gjT6ME4cmr">short pre-course questionnaire</a></p>
+</section>
+<section id="lectures">
+<h2>Lectures<a class="headerlink" href="#lectures" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Part1_FundamentalConcepts/contents/">Fundamental Concepts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part1_FundamentalConcepts/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part1_FundamentalConcepts/contents/#part-b">Part B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part1_FundamentalConcepts/contents/#part-c">Part C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part2_OpenMPFundamentals/contents/">OpenMP Fundamentals</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part2_OpenMPFundamentals/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part2_OpenMPFundamentals/contents/#part-b">Part B</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part3_ParallelRegions/contents/">Parallel Regions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part3_ParallelRegions/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part3_ParallelRegions/contents/#part-b">Part B</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part4_Worksharing/contents/">Worksharing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part4_Worksharing/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part4_Worksharing/contents/#part-b">Part B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part4_Worksharing/contents/#part-c">Part C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part5_Synchronisation/contents/">Synchronisation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part5_Synchronisation/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part5_Synchronisation/contents/#part-b">Part B</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part6_FurtherTopics/contents/">Further Topics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part6_FurtherTopics/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part6_FurtherTopics/contents/#part-b">Part B</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part7_Tasks/contents/">Tasks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part7_Tasks/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part7_Tasks/contents/#part-b">Part B</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part8_OpenMP4.0-4.5/contents/">OpenMP 4.0 and later feattures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part8_OpenMP4.0-4.5/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part8_OpenMP4.0-4.5/contents/#part-b">Part B</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part8_OpenMP4.0-4.5/contents/#part-c">Part C</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part9_TipsTricksGotchas/contents/">Tips, Tricks and Gotchas</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part9_TipsTricksGotchas/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part9_TipsTricksGotchas/contents/#part-b">Part B</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part10_MemoryModel/contents/">Memory Model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part10_MemoryModel/contents/#part-a">Part A</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Part12_OpenMPImplementation/contents/">OpenMP Implementation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="Part12_OpenMPImplementation/contents/#part-a">Part A</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Part12_OpenMPImplementation/contents/#part-b">Part B</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+<section id="exercises">
+<h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this heading"></a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="Exercises/contents/">Exercise materials for ARCHER2</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Exercises/contents/#exercise-materials-for-cirrus">Exercise materials for Cirrus</a></li>
+</ul>
+</div>
+</section>
+<section id="post-course-questionnaire">
+<h2>Post-course questionnaire<a class="headerlink" href="#post-course-questionnaire" title="Permalink to this heading"></a></h2>
+<p>Once you have completed the course, we would be most grateful if you could complete the <a class="reference external" href="https://forms.office.com/r/aUth2aKHvD">post-course questionnaire</a></p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="Part1_FundamentalConcepts/contents/" class="btn btn-neutral float-right" title="Fundamental Concepts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, EPCC at the University of Edinburgh.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
